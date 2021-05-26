@@ -33,7 +33,16 @@ let starWarsPeople = [
 
 const sortStarWarsCharacters = (starWarsArr) => {
   // Solution code here...
-  
+  starWarsArr.sort((a,b)=>{
+    if(parseInt(a.height) > parseInt(b.height)){
+      return -1;
+    }
+    else if(parseInt(a.height) < parseInt(b.height)){
+      return 1;
+    }
+    else return 0;
+  });
+  return starWarsArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -51,6 +60,8 @@ describe('Testing challenge 2', () => {
 
 const removeThree = (idx, arr) => {
   // Solution code here...
+  arr.splice(idx,3);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -82,11 +93,23 @@ Your function should use slice within a loop and return an array of each success
 
 For example, if the input is 'Welcome', the output will be:
 ['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', ''].
+
+describe('Testing challenge 4', () => {
+  test('It should return a list of shortening words', () => {
+    expect(howMuchPencil('Welcome')).toStrictEqual(['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', '']);
+    expect(howMuchPencil('Welcome').length).toStrictEqual(8);
+    expect(howMuchPencil('')).toStrictEqual(['']);
+    expect(howMuchPencil('abc')).toStrictEqual(['abc', 'bc', 'c', '']);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
+  for (let i = 0; i <= str.length; i++) {
+    result.push(str.split('').slice(i).join(''));
+  }
   return result;
 };
 
@@ -96,10 +119,20 @@ CHALLENGE 5
 Write a function name wordsToCharList that, given a string as input, returns a new array where every element is a character of the input string.
 
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
+
+describe('Testing challenge 5', () => {
+  test('It should return an array of individual letters', () => {
+    expect(wordsToCharList('Gregor')).toStrictEqual(['G', 'r', 'e', 'g', 'o', 'r']);
+    expect(wordsToCharList('Gregor').length).toStrictEqual(6);
+    expect(wordsToCharList('hooray')).toStrictEqual(['h', 'o', 'o', 'r', 'a', 'y']);
+    expect(wordsToCharList('')).toStrictEqual([]);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const wordsToCharList = (arr) => {
   // Solution code here...
+  return arr.split('');
 };
 
 
@@ -113,6 +146,13 @@ Write a function named listFoods that takes in the recipe and returns a new arra
 Use slice for this function, maybe more than once. The Array.indexOf() method may also be helpful.
 
 Do not use split for this function.
+
+describe('Testing challenge 6', () => {
+  test('It should return a list of foods', () => {
+    expect(listFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
+    expect(listFoods(gruffaloCrumble).length).toStrictEqual(11);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const gruffaloCrumble = {
