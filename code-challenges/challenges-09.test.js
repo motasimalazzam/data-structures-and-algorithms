@@ -7,16 +7,6 @@ Write a function that finds the maximum value in an array
 using the 'reduce' method.
 
 E.g. [4,2,7,5,9,2] -> 9
-
-describe('Testing challenge 1', () => {
-  test('It should return the maximum number found', () => {
-    expect(maxInArray([4, 2, 7, 5, 9, 2])).toStrictEqual(9);
-  });
-  test('It should handle negatives and return the maximum number found', () => {
-    expect(maxInArray([4, -2, -7, 5, -9, 2])).toStrictEqual(5);
-  });
-});
-
 ------------------------------------------------------------------------------------------------ */
 const maxInArray = (arr) => {
   // Solution code here...
@@ -35,12 +25,6 @@ CHALLENGE 2
 Write a function named getCourseKeys that takes in the courseInfo object and returns an array containing the keys for the courseInfo object.
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
-
-describe('Testing challenge 2', () => {
-  test('It should return the keys from an object', () => {
-    expect(getCourseKeys(courseInfo)).toStrictEqual(['name', 'duration', 'topics', 'finalExam']);
-  });
-});
 ------------------------------------------------------------------------------------------------ */
 const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
   topics: ['SMACSS', 'APIs', 'NodeJS', 'SQL', 'jQuery', 'functional programming'],
@@ -53,15 +37,13 @@ const getCourseKeys = (obj) => {
   return obj;
 };
 
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
 Write a function named checkValues that takes in an object and a value and returns true if the value is in the object.
 
-describe('Testing challenge 3', () => {
-  test('It should return true if the value is in the object', () => {
-    expect(checkValues({ class: '301' }, '301')).toBe(true);
-  });
+
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
@@ -107,18 +89,30 @@ describe('Testing challenge 4', () => {
     expect(updateNumbers(startingObj).includes('Grace Hopper: 222-303-5938')).toBe(true);
   });
 });
+
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
   // Solution code here...
+  let arr=Object.entries(obj);
+  let arr1=arr.map(item=>{
+    return (item.join(': '));
+  });
+  return arr1;
 };
-
 
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
 Write a function named getHouses that returns a new array containing the names of all of the houses in the data set.
+
+describe('Testing challenge 5', () => {
+  test('It should return an array of the names of the houses', () => {
+    expect(getHouses(characters)[0]).toStrictEqual('Stark');
+    expect(getHouses(characters).length).toStrictEqual(7);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const characters = [
@@ -167,6 +161,9 @@ const characters = [
 const getHouses = (arr) => {
   let houses = [];
   // Solution code here...
+  for (let i=0; i<arr.length;i++){
+    houses.push(arr[i].house);
+  }
   return houses;
 };
 
@@ -180,10 +177,28 @@ This function should take in an array of data and a character name and return a 
 For example:
 hasChildrenValues(characters, 'Cersei') will return true
 hasChildrenValues(characters, 'Sansa') will return false
+
+describe('Testing challenge 6', () => {
+  test('It should return true for characters that have children', () => {
+    expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
+  });
+
+  test('It should return false to characters who do not have children', () => {
+    expect(hasChildrenValues(characters, 'Sansa')).toBeFalsy();
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
+  let test=false;
+  let arr2=Object.values(arr);
+  arr2.forEach(item => {
+    if(item.name === character && item.children){
+      test= true;
+    }
+  });
+  return test;
 
 };
 
