@@ -106,9 +106,14 @@ describe('Testing challenge 4', () => {
 });s
 ------------------------------------------------------------------------------------------------ */
 
+
 const standardizePhoneNumbers = (arr) => {
   // Solution code here...
-
+  let numbers=[];
+  arr.map(item=>{
+    numbers.push(item.substring(1,4)+item.substring(6,9)+item.substring(10,14))
+});
+  return numbers;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,11 +149,31 @@ const onlyOddChars = (str) => {
 CHALLENGE 6 
 
 Write a function named allHappy that takes in an array of strings and returns a Boolean indicating whether all those strings contain ":)".
+
+describe('Testing challenge 6', () => {
+  test('It should correctly assess whether all the strings are happy', () => {
+    const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
+
+    expect(allHappy(words)).toStrictEqual(false);
+    expect(allHappy(['apple (:)', ':)banana', 'cant:)aloupe'])).toStrictEqual(true);
+    expect(allHappy([])).toStrictEqual(true);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
   // Solution code here...
+  let newArr = arr;
+  let filterdArr = arr.filter(item=>{
+    return item.includes(':)');
+  })
+  if (newArr.length === filterdArr.length){
+    return true;
+  }else{
+    return false;
+  }
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
