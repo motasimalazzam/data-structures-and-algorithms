@@ -115,14 +115,27 @@ Then, write a function named addNumbers that takes in four arguments:
 Within the addNumbers function, invoke the callback function as many times as necessary, based on the third argument of the addNumbers function.
 
 Return the modified array.
+
+describe('Testing challenge 5', () => {
+  test('It should add the number 8 to the array five times', () => {
+    expect(addNumbers(8, [], 5, addValues)).toStrictEqual([8, 8, 8, 8, 8]);
+    expect(addNumbers(8, [], 5, addValues).length).toStrictEqual(5);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const addValues = (arr, value) => {
   // Solution code here...
+    arr.push(value)
+  
 };
 
 const addNumbers = (num, arr, times, callback) => {
   // Solution code here...
+  for(let i=0;i<times;i++){
+    callback(arr,num)
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -141,10 +154,26 @@ The inventory is formatted like this:
 ]
 
 This function should use forEach to populate your grocery list based on the store's inventory. If the item is available, add it to your list. Return the final list.
+
+describe('Testing challenge 6', () => {
+  const inventory = [{ name: 'apples', available: true }, { name: 'pears', available: true }, { name: 'oranges', available: false }, { name: 'bananas', available: true }, { name: 'blueberries', available: false }];
+
+  test('It should only add the available items to the list', () => {
+    expect(createList(inventory)).toStrictEqual(['apples', 'pears', 'bananas']);
+    expect(createList(inventory).length).toStrictEqual(3);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const createList = (availableItems) => {
   // Solution code here...
+  let arr=[];
+  availableItems.forEach(item=>{
+    if(item.available===true){
+      arr.push(item.name)
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
