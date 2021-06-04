@@ -93,10 +93,42 @@ CHALLENGE 5
 Write a function named notInFirstArray that, given two arrays as input, uses filter to return an array of all the elements in the second array that are not included in the first array.
 
 For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
+
+describe('Testing challenge 5', () => {
+  const firstNums = [1, 2, 3];
+  const secondNums = [1, 2, 3, 4];
+
+  const firstStrings = ['Demi', 'Gregor', 'Hound'];
+  const secondStrings = ['Gary', 'Charlotte', 'Demi', 'Gregor', 'Hound'];
+
+  test('It should return an array that includes any elements not in the first array', () => {
+    expect(notInFirstArray(firstNums, secondNums)).toStrictEqual([4]);
+    expect(notInFirstArray(firstNums, secondNums).length).toStrictEqual(1);
+  });
+
+  test('It should also work with an array of strings', () => {
+    expect(notInFirstArray(firstStrings, secondStrings)).toStrictEqual(['Gary', 'Charlotte']);
+    expect(notInFirstArray(firstStrings, secondStrings).length).toStrictEqual(2);
+  });
+
+  test('It should work with empty arrays', () => {
+    expect(notInFirstArray([], [])).toStrictEqual([]);
+    expect(notInFirstArray([], [1,2,3,4,5])).toStrictEqual([1,2,3,4,5]);
+    expect(notInFirstArray([1,2,3,4,5], [])).toStrictEqual([]);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const notInFirstArray = (forbiddenValues, arr) => {
   // Solution code here...
+  let notIncluded=[];
+  arr.filter(item=>{
+    if(!forbiddenValues.includes(item)){
+      notIncluded.push(item);
+    }
+
+  });
+  return notIncluded;
 };
 
 /* ------------------------------------------------------------------------------------------------
