@@ -63,6 +63,18 @@ let characters = [
 
 const sortByChildren = (charArray) => {
   // Solution code here...
+  let newArr=[];
+  newArr=charArray.sort((a,b)=>{
+    if(a.children.length>b.children.length){
+      return 1;
+
+    }else if(a.children.length<b.children.length){
+      return -1;
+    }else{
+      return 0;
+    }
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
